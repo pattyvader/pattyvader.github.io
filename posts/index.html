@@ -13,7 +13,6 @@ title: Posts
       {% else %}
       <h3 class="post-subtitle">{{ post.excerpt | strip_html | truncatewords: 15 }}</h3>
       {% endif %}
-      <a href="{{ post.url }}" ><img src="{{ post.thumbnail }}" />
     </a>
     <p class="post-meta">Posted by
       {% if post.author %}
