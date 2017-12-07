@@ -17,11 +17,6 @@ layout: default
           {% if page.subtitle %}
           <h2 class="subheading">{{ page.subtitle }}</h2>
           {% endif %}
-          {% if post.image %}
-          <meta property="og:image" content="{{ post.image }}">
-          {% else %}
-          <meta property="og:image" content="{{ page.image}}">
-          {% endif %}
           <span class="meta">Posted by
             <a href="#">Patty Vader</a>
             on {{ page.date | date: '%B %d, %Y' }}</span>

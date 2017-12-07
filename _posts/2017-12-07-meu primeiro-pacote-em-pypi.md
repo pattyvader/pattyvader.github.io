@@ -9,7 +9,7 @@ image: '/img/logo-pypi.svg'
 
 Nesta semana está ocorrendo um Hackthon no Olist. E pela primeira vez submeti um package para Pypi.  :smile:
 
-## Mas o que Pypi?
+## Mas o que é Pypi?
 
 É um repositório de software open-source oficial do Python. Todo mundo pode enviar seus pacotes para lá.
 *Simples assim!!!!*
