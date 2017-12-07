@@ -5,6 +5,7 @@ subtitle: ""
 date:   2017-12-07
 background: '/img/logo-pypi.svg'
 image: '/img/logo-pypi.svg'
+thumbnail: 'img/logo-pypi.svg'
 ---
 
 Nesta semana está ocorrendo um Hackthon no Olist. E pela primeira vez submeti um package para Pypi.  :smile:
