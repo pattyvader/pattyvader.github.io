@@ -12,16 +12,19 @@
   {% if page.image %}
   <meta property="og:image" content="{{ site.url }}{{ page.image }}">
   {% endif %}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ page.title }}">
   <meta name="twitter:site" content="@pattyvader" />
   {% if page.description %}
   <meta name="twitter:description" content="{{ page.description }}">
   {% else %}
-  <meta name="twitter:description" content="{{ site.description }}">
+  <meta name="twitter:description" content="{{ page.content | strip_html | xml_escape
+      | truncate: 200 }}">
   {% endif %}
   {% if page.image %}
-  <meta name="twitter:image:src" content="{{ site.url }}{{ page.image }}">
+  <meta name="twitter:image" content="{{ site.url }}{{ page.image }}">
   {% else %}
-  <meta name="twitter:image:src" content="{{ site.url }}/img/revolution.jpg">
+  <meta name="twitter:image" content="{{ site.url }}/img/revolution.jpg">
   {% endif %}
 
   <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
