@@ -9,8 +9,8 @@
   </title>
 
   <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
-  {% if page.image %}
-  <meta property="og:image" content="{{ site.url }}{{ page.image }}">
+  {% if page.thumbnail %}
+  <meta property="og:image" content="{{ site.url }}{{ page.thumbnail }}">
   {% endif %}
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{ page.title }}">
@@ -21,8 +21,8 @@
   <meta name="twitter:description" content="{{ page.content | strip_html | xml_escape
       | truncate: 200 }}">
   {% endif %}
-  {% if page.image %}
-  <meta name="twitter:image" content="{{ site.url }}{{ page.image }}">
+  {% if page.thumbnail %}
+  <meta name="twitter:image" content="{{ site.url }}{{ page.thumbnail }}">
   {% else %}
   <meta name="twitter:image" content="{{ site.url }}/img/revolution.jpg">
   {% endif %}
