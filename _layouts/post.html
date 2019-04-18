@@ -33,10 +33,15 @@ layout: default
   
       {{ content }}
 
+      {% if page.image_footer %}
+        <img class="img_footer" src="/img/gopherwars.jpg">
+        </br></br>
+      {% endif %}
+
       {% if site.disqus.shortname %}
         {% include disqus_comments.html %}
       {% endif %}
-      
+
       <hr>
 
       <div class="clearfix">
