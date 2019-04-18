@@ -3,7 +3,7 @@ layout: post
 title:  "Meu primeiro pacote no PyPI"
 subtitle: ""
 date:   2017-12-07
-background: '/img/logo-pypi.svg'
+background: '/img/logo-pypi.jpg'
 image: '/img/logo-pypi.jpg'
 ---
 
