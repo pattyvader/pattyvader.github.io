@@ -4,7 +4,7 @@ title:  "Meu primeiro pacote no PyPI"
 subtitle: ""
 date:   2017-12-07
 background: '/img/logo-pypi.jpg'
-image: '/img/logo-pypi.jpg'
+thumbnail: '/img/logo-pypi.jpg'
 ---
 
 Está rolando uma semana bem legal no Olist. O Bootcamp. Estão ocorrendo inúmeras atividades de programação,
