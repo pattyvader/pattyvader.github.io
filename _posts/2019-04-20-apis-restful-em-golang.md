@@ -2,7 +2,7 @@
 layout: post
 title:  "APIs RESTful em Go"
 subtitle: "Minha primeira API Go"
-date:   2019-04-10
+date:   2019-04-20
 background: '/img/gopher.jpg'
 thumbnail: '/img/gopher.jpg'
 image_footer: '/img/gopherwars.jpg'
