@@ -20,6 +20,19 @@ layout: default
           <span class="meta">Posted by
             <a href="#">Patty Vader</a>
             on {{ page.date | date: '%B %d, %Y' }}</span>
+            <span class="meta" style="font-size:15px">{% include post-readingtime.html %}</span>
+            {% if page.language=='pt_br' %}
+            <a href="{{ page.english }}"><img src="/img/english_flag.png"></a>
+            <a href="{{ page.espanish }}"><img src="/img/spanish_flag.png"></a>
+            {% endif %}
+            {% if page.language=='en' %}
+            <a href="{{ page.brazilian }}"><img src="/img/brazilian_flag.png"></a>
+            <a href="{{ page.espanish }}"><img src="/img/spanish_flag.png"></a>
+            {% endif %}
+            {% if page.language=='es' %}
+            <a href="{{ page.brazilian }}"><img src="/img/brazilian_flag.png"></a>
+            <a href="{{ page.english }}"><img src="/img/english_flag.png"></a>
+            {% endif %}
         </div>
       </div>
     </div>
@@ -34,7 +47,7 @@ layout: default
       {{ content }}
 
       {% if page.image_footer %}
-        <img class="img_footer" src="/img/gopherwars.jpg">
+        <img class="img_footer" src="{{ page.image_footer}}">
         </br></br>
       {% endif %}
 
