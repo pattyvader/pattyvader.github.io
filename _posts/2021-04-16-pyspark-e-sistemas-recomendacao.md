@@ -138,7 +138,7 @@ Para mostrar o uso de PySpark e ML para construir um simples Sistemas de Recomen
 
 É algo que todos gostamos, e que possui grandes datasets disponíveis no [MovieLens](https://grouplens.org/datasets/movielens/).
 
-Quer ver o PySpark em ação? Então diverta-se com um Jupyter Notebook interativo, e que se encontra [aqui](https://github.com/pattyvader/recommender_system_notebook/blob/main/movies_ratings.ipynb)!
+Quer ver o PySpark em ação? Então diverta-se com um Jupyter Notebook que mostra o funcionamento de um sistema de recomendação, e que se encontra [aqui](https://github.com/pattyvader/recommender_system_notebook/blob/main/movies_ratings.ipynb)!
 
 ## Links interessantes
 
