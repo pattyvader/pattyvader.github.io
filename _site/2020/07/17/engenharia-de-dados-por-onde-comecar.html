@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Engenharia de dados: Por onde começar? - Revolução Feminina
+    
+  </title>
+
+  <meta name="description" content="A idéia de criar pipelines de dados, modelar Data Warehouses, escalar modelos de Machine Learning...">
+  <meta property="og:description" content="A idéia de criar pipelines de dados, modelar Data Warehouses, escalar modelos de Machine Learning ou pensar em maneiras de coletar dados em tempo real te agr...">
+  
+  <meta property="og:image" content="http://localhost:4000/img/big_data.jpg">
+  
+  <meta property="og:image:width" content="800"> 
+  <meta property="og:image:height" content="600">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Engenharia de dados: Por onde começar?">
+  <meta name="twitter:site" content="@pattyvader" />
+  
+  <meta name="twitter:description" content="A idéia de criar pipelines de dados, modelar Data Warehouses, escalar modelos de Machine Learning ou pensar em maneiras de coletar dados em tempo real te agr...">
+  
+  
+  <meta name="twitter:image" content="http://localhost:4000/img/big_data.jpg">
+  
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="/assets/vendor/font-awesome/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="http://localhost:4000/2020/07/17/engenharia-de-dados-por-onde-comecar.html">
+  <link rel="alternate" type="application/rss+xml" title="Revolução Feminina" href="/feed.xml">
+
+</head>
+
+
+  <body>
+
+    <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">Revolução Feminina</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/sobre">Sobre</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+    <!-- Page Header -->
+
+<header class="masthead" style="background-image: url('/img/big_data.jpg')">
+
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="post-heading">
+          <h1>Engenharia de dados: Por onde começar?</h1>
+          
+          <h2 class="subheading">Tudo (ou quase tudo) que você deve saber para trabalhar com Engenharia de Dados</h2>
+          
+          <span class="meta">Posted by
+            <a href="#">Patty Vader</a>
+            on July 17, 2020</span>
+            <span class="meta" style="font-size:15px">
+
+  
+    2
+  
+     minutes to read
+  
+</span>
+            
+            
+            
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      
+
+<style>
+#share-buttons {display: inline-block; vertical-align: middle; }
+#share-buttons:after {content: ""; display: block; clear: both;}
+#share-buttons > div {
+    position: relative;
+    text-align: left; 
+    height: 36px; 
+    width: 32px; 
+    float: left; 
+    text-align: center;
+}
+#share-buttons > div > svg {height: 16px; fill: #d5d5d5; margin-top: 10px;}
+#share-buttons > div:hover {cursor: pointer;}
+#share-buttons > div.facebook:hover > svg {fill: #3B5998;}
+#share-buttons > div.twitter:hover > svg {fill: #55ACEE;}
+#share-buttons > div.linkedin:hover > svg {fill: #0077b5;}
+#share-buttons > div.mail:hover > svg {fill: #7D7D7D;}
+#share-buttons > div.facebook > svg {height: 18px; margin-top: 9px;}
+#share-buttons > div.twitter > svg {height: 20px; margin-top: 8px;}
+#share-buttons > div.linkedin > svg {height: 19px; margin-top: 7px;}
+#share-buttons > div.mail > svg {height: 14px; margin-top: 11px;}
+</style>
+
+<span style="color: silver;">Share on: </span><div id="share-buttons">
+    <div class="facebook" title="Share this on Facebook" onclick="window.open('http://www.facebook.com/share.php?u=http://localhost:4000/2020/07/17/engenharia-de-dados-por-onde-comecar.html');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"/></svg></div>
+    <div class="twitter" title="Share this on Twitter" onclick="window.open('http://twitter.com/share?status=http://localhost:4000/2020/07/17/engenharia-de-dados-por-onde-comecar.html');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg></div>
+    <div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/2020/07/17/engenharia-de-dados-por-onde-comecar.html&title=&summary=&source=');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg></div>
+</div>
+  
+      <p>A idéia de criar pipelines de dados, modelar Data Warehouses, escalar modelos de Machine Learning ou pensar em maneiras de coletar dados em tempo real te agrada? Então a Engenharia de Dados é para você!</p>
+
+<p>Baseado em minha experiência escrevi esse post para servir de guia para quem deseja investir na área de Engenharia de Dados.</p>
+
+<h2 id="por-onde-devo-começar">Por onde devo começar?</h2>
+
+<p>Se você tem experiência com Engenharia de Software, Infraestrutura ou Banco de dados já é um excelente começo.</p>
+
+<p>Acho bem interessante uns <a href="https://github.com/hasbrain/data-engineer-roadmap">rodmaps</a> que aparecem no GitHub que podem servir de start. Eles mostram uma timeline de conhecimento que você deve saber ou conhecer.</p>
+
+<h2 id="em-que-devo-focar">Em que devo focar?</h2>
+
+<p>Foque no básico para começar. Invista grande parte do seu tempo em projetar pipelines de dados em um ambiente cloud. Estude a teoria de Sistemas distribuídos, ETL, Modelagem de dados e Data Warehouse.</p>
+
+<p>Conforme você avança nos seus estudos trabalhar com Spark, Hadoop, Map Reduce entre outras tecnologias torna-se natural. Não se preocupe em um primeiro momento dominar completamente essas ferramentas.</p>
+
+<p>Tem um <a href="https://medium.com/data-hackers/os-tipos-de-engenheiros-de-dados-c3674b4d74d1">artigo</a> bem interessante, do Allan Sene, que fala sobre os tipos de Pessoa Engenheira de Dados. Cada profissional foca em um determinado assunto como Machine Learning, Monitoramento e Provisionamento ou Desenvolvimento de serviços de coleta de dados.</p>
+
+<p>No próximo item faço uma lista do que considero importante que um profissional conheça.</p>
+
+<h2 id="tecnologias-e-skills">Tecnologias e skills</h2>
+
+<p>Muito se fala sobre quais tecnologias e skills são necessários para trabalhar com Engenharia de Dados. Todos os dias aparecem novas tecnologias e metodologias.</p>
+
+<p>Como dominar tudo isso? Realmente é humanamente impossível 🤖. Acredito que devemos dominar o básico, e conforme necessitamos vamos adicionando ao nosso portfólio novas tecnologias e ferramentas.</p>
+
+<p>Listo abaixo por ordem de prioridade o que <strong>acredito</strong> que uma Pessoa Engenheira de Dados necessita saber, o que seria interessante saber e o que considero opcional.</p>
+
+<p>Evitei listar ferramentas pois é <strong>importantíssimo</strong> saber a teoria por trás delas, e a utilização de determinado framework dependerá da arquitetura existente na empresa que você trabalha.</p>
+
+<p><em><strong>Conselho:</strong> recomendo fortemente que você crie pipelines de dados na AWS, GCP ou Azure. Elas permitem o uso de muitos serviços grátis por 1 ano. E muito cuidado para não deixar a arquitetura executando. Construa, absorva o conhecimento, documente todo processo e destrua/pare todos os serviços. Senão a conta no final do mês será bem alta</em> 💰</p>
+
+<p>🔥 <strong>Necessário:</strong></p>
+
+<ul>
+  <li>Sistemas distribuídos</li>
+  <li>Data Warehouse</li>
+  <li>Modelagem de dados</li>
+  <li>ETL\ELT</li>
+  <li>Data Lake</li>
+  <li>SQL\NoSQL</li>
+  <li>Linguagens de Programação (Python, Scala ou Java)</li>
+  <li>Computação em nuvem (AWS, GCP ou Azure)</li>
+  <li>Big Data</li>
+</ul>
+
+<p>🆒 <strong>Interessante:</strong></p>
+
+<ul>
+  <li>Governança de dados</li>
+  <li>Práticas de Engenharia de Software</li>
+  <li>Ferramentas para gerenciar fluxos de trabalho (Luigi, Airflow etc)</li>
+  <li>Machine Learning</li>
+</ul>
+
+<p>🦄 <strong>Opcional:</strong></p>
+
+<ul>
+  <li>Data Mesh</li>
+  <li>SRE</li>
+  <li>DevOps</li>
+  <li>DataOps</li>
+  <li>Data lineage</li>
+  <li>Data Literacy</li>
+</ul>
+
+<h2 id="links-interessantes">Links interessantes</h2>
+
+<p><a href="https://www.oreilly.com/content/data-engineering-a-quick-and-simple-definition/">Data engineering: A quick and simple definition</a></p>
+
+<p><a href="https://medium.com/@rchang/a-beginners-guide-to-data-engineering-part-i-4227c5c457d7">A Beginner’s Guide to Data Engineering</a></p>
+
+<p><a href="https://www.freecodecamp.org/news/the-rise-of-the-data-engineer-91be18f1e603/">The Rise of the Data Engineer</a></p>
+
+<p><a href="https://github.com/andkret/Cookbook">The Data Engineering Cookbook</a></p>
+
+<p><a href="https://medium.com/data-hackers/os-tipos-de-engenheiros-de-dados-c3674b4d74d1">Os Tipos de Engenheiros de Dados</a></p>
+
+<h6 id="créditos">Créditos:</h6>
+<p><span style="display:block;text-align:left;font-size:15px">
+  <a href="https://br.freepik.com/fotos-vetores-gratis/nuvem">Nuvem vetor criado por macrovector - br.freepik.com</a>
+</span></p>
+
+<div style="display:block;text-align:left;font-size:15px">Ícones feitos por <a href="https://www.flaticon.com/br/icone-gratis/dados_1847954" title="Payungkead">Payungkead</a> from <a href="https://www.flaticon.com/br/" title="Flaticon">www.flaticon.com</a></div>
+<p><br /></p>
+
+
+      
+        <img class="img_footer" src="/img/big_data_icon.png">
+        </br></br>
+      
+
+      
+        
+
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/2020/07/17/engenharia-de-dados-por-onde-comecar.html';
+      this.page.identifier = 'http://localhost:4000/2020/07/17/engenharia-de-dados-por-onde-comecar.html';
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://revolucaofeminina.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+      
+
+      <hr>
+
+      <div class="clearfix">
+
+        
+        <a class="btn btn-primary float-left" href="/2020/07/14/ciencia-de-dados-introducao.html" data-toggle="tooltip" data-placement="top" title="O que é Ciência de dados?">&larr; Previous<span class="d-none d-md-inline"> Post</span></a>
+        
+        
+        <a class="btn btn-primary float-right" href="/2020/10/22/engenharia-dados-programacao.html" data-toggle="tooltip" data-placement="top" title="Preciso saber programar?">Next<span class="d-none d-md-inline"> Post</span> &rarr;</a>
+        
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+    <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="https://www.twitter.com/pattyvader">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/pattyvader">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; Patty Vader 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/clean-blog.min.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  </body>
+
+</html>

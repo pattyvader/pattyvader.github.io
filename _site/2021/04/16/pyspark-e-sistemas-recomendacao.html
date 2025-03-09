@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    PySpark e Sistemas de Recomendação - Revolução Feminina
+    
+  </title>
+
+  <meta name="description" content="Vivemos em um mundo rodeado por plataformas que nos sugerem o que ouvir, comprar ou assistir.">
+  <meta property="og:description" content="Vivemos em um mundo rodeado por plataformas que nos sugerem o que ouvir, comprar ou assistir.
+
+Não que isso seja ruim! Muitas vezes assistimos uma série por ...">
+  
+  <meta property="og:image" content="http://localhost:4000/img/recommender_systems.jpg">
+  
+  <meta property="og:image:width" content="800"> 
+  <meta property="og:image:height" content="600">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="PySpark e Sistemas de Recomendação">
+  <meta name="twitter:site" content="@pattyvader" />
+  
+  <meta name="twitter:description" content="Vivemos em um mundo rodeado por plataformas que nos sugerem o que ouvir, comprar ou assistir.
+
+Não que isso seja ruim! Muitas vezes assistimos uma série por ...">
+  
+  
+  <meta name="twitter:image" content="http://localhost:4000/img/recommender_systems.jpg">
+  
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="/assets/vendor/font-awesome/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="http://localhost:4000/2021/04/16/pyspark-e-sistemas-recomendacao.html">
+  <link rel="alternate" type="application/rss+xml" title="Revolução Feminina" href="/feed.xml">
+
+</head>
+
+
+  <body>
+
+    <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">Revolução Feminina</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/sobre">Sobre</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+    <!-- Page Header -->
+
+<header class="masthead" style="background-image: url('/img/recommender_systems.jpg')">
+
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="post-heading">
+          <h1>PySpark e Sistemas de Recomendação</h1>
+          
+          <h2 class="subheading">Criando um pequeno Sistema de Recomendação com PySpark</h2>
+          
+          <span class="meta">Posted by
+            <a href="#">Patty Vader</a>
+            on April 16, 2021</span>
+            <span class="meta" style="font-size:15px">
+
+  
+    6
+  
+     minutes to read
+  
+</span>
+            
+            
+            
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      
+
+<style>
+#share-buttons {display: inline-block; vertical-align: middle; }
+#share-buttons:after {content: ""; display: block; clear: both;}
+#share-buttons > div {
+    position: relative;
+    text-align: left; 
+    height: 36px; 
+    width: 32px; 
+    float: left; 
+    text-align: center;
+}
+#share-buttons > div > svg {height: 16px; fill: #d5d5d5; margin-top: 10px;}
+#share-buttons > div:hover {cursor: pointer;}
+#share-buttons > div.facebook:hover > svg {fill: #3B5998;}
+#share-buttons > div.twitter:hover > svg {fill: #55ACEE;}
+#share-buttons > div.linkedin:hover > svg {fill: #0077b5;}
+#share-buttons > div.mail:hover > svg {fill: #7D7D7D;}
+#share-buttons > div.facebook > svg {height: 18px; margin-top: 9px;}
+#share-buttons > div.twitter > svg {height: 20px; margin-top: 8px;}
+#share-buttons > div.linkedin > svg {height: 19px; margin-top: 7px;}
+#share-buttons > div.mail > svg {height: 14px; margin-top: 11px;}
+</style>
+
+<span style="color: silver;">Share on: </span><div id="share-buttons">
+    <div class="facebook" title="Share this on Facebook" onclick="window.open('http://www.facebook.com/share.php?u=http://localhost:4000/2021/04/16/pyspark-e-sistemas-recomendacao.html');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"/></svg></div>
+    <div class="twitter" title="Share this on Twitter" onclick="window.open('http://twitter.com/share?status=http://localhost:4000/2021/04/16/pyspark-e-sistemas-recomendacao.html');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg></div>
+    <div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/2021/04/16/pyspark-e-sistemas-recomendacao.html&title=&summary=&source=');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg></div>
+</div>
+  
+      <p>Vivemos em um mundo rodeado por plataformas que nos sugerem o que ouvir, comprar ou assistir.</p>
+
+<p>Não que isso seja ruim! Muitas vezes assistimos uma série por sugestão do Netflix ou ouvimos uma música porque o Spotify achou que iríamos gostar. Não é verdade?</p>
+
+<p>Já parou para pensar como essas plataformas conseguem fazer isse tipo de sugestão? Não? Sim? Talvez?</p>
+
+<p>No backend de todo esse mundo de sugestões existem os chamados <strong>Sistemas de Recomendação</strong> ou <a href="https://en.wikipedia.org/wiki/Recommender_system"><strong><em>Recommender Systems</em></strong></a>. Eles são treinados exatamente para entender dos nossos gostos e desejos, fazendo assim, sugestões de consumo e na maioria das vezes eles acertam em cheio!</p>
+
+<p>Neste post falarei um pouco sobre Sistemas de Recomendação, e mostrarei de uma forma prática, usando Python e PySpark, como esses sistemas funcionam.</p>
+
+<p><br />
+<span style="display:block;text-align:center">
+   <img src="/img/recommender_systems_peoples.jpg " alt="" width="500" height="250" />
+</span></p>
+
+<h2 id="sistemas-de-recomendação">Sistemas de Recomendação</h2>
+
+<div style="text-align:right;font-size:18px;"> 
+  <blockquote>
+    A recommender system isn’t only a fancy algorithm. It’s also about understanding the data and your users.
+    <br />
+    -- <cite>Practical Recommender Systems</cite>
+  </blockquote>
+</div>
+
+<p>Podemos entender Sistemas de Recomendação somente pelo viés dos algoritmos ou é algo mais enigmático do que imaginamos? Podemos dizer que eles além de possuírem algoritmos complexos também entendem muito sobre os dados que são coletados, e consequentemente conseguem compreender, ou tentar compreender, nosso consumo ao ponto de nos fazer sugestões?</p>
+
+<h3 id="o-que-é-um-sistema-de-recomendação">O que é um Sistema de recomendação?</h3>
+
+<p>A imensa quantidade de opções que as grandes plataformas de ecommerce ou streaming possuem em seus catálagos é muito assustador, sem mencionar, a quantidade de acessos que essas mesmas plataformas recebem diariamente.</p>
+
+<p>Como fazer com que seus usuários fiquem satisfeitos e encontrem exatamente o que procuram? Como auxiliá-los na escolha do que comprar, do que assistir ou ouvir?</p>
+
+<p>Desses tipos de questionamentos surgiram os <em>Sistemas de Recomendação</em>. Eles são algoritmos altamente treinados para sugerir opções de consumo dentro do imenso catálago de produtos, conteúdo ou serviços de empresas como Netflix, Amazon, Spotify ou Linkedin.</p>
+
+<p>Esses sistemas utilizam a imensidade de dados que são coletados e armazenados diariamente para aprender e entender a preferência de consumo dos usuários, oferecendo assim, uma experiência personalizada de utilização de suas plataformas.</p>
+
+<div style="text-align:right;font-size:18px;"> 
+  <blockquote>
+    A recommender system calculates and provides relevant content to the user based on knowledge of the user, content, and interactions between the user and the item.
+    <br />
+    -- <cite>Practical Recommender Systems</cite>
+  </blockquote>
+</div>
+
+<p><strong><em>Em resumo</em></strong>: um Sistema de Recomendação é um sistema que possui algoritmos extremamente especializados e treinados. Ele oferece aos usuários conteúdos e produtos de uma maneira personalizada. 
+Para fazer sugestões ele aprende sobre nossos gostos e preferências, usando para isso, uma imensa quantidade de dados coletados pelas interações realizadas dentro de determinada plataforma.</p>
+
+<h3 id="algoritmos">Algoritmos</h3>
+
+<p>Para um Sistema de Recomendação executar sua função é necessário possuir algoritmos “<strong><em>inteligentes</em></strong>” e bem treinados.</p>
+
+<p>Nos próximas seções serão descritos os algoritmos mais utilizados na construção de <strong><em>SRs</em></strong> (Sistemas de Recomendação).</p>
+
+<h4 id="baseado-em-popularidade">Baseado em popularidade</h4>
+
+<p>Começamos com um dos tipos mais básicos de algoritmos. Normalmente ele é utilizado para fazer recomendação de produtos ou conteúdos para os usuários, baseados na popularidade de um item.</p>
+
+<p>Para fazer essas recomendações ele se baseia na compra, visualização, curtida ou download que os usuários realizam de determinado produto ou serviço, fazendo assim, um ranking dos items mais populares.</p>
+
+<p>Esse tipo de SR não costuma ser altamente personalizado já que as mesmas recomendações, geralmente, são iguais para vários grupos de usuários.</p>
+
+<h4 id="baseado-em-conteúdo">Baseado em conteúdo</h4>
+
+<p>Os algoritmos de filtragem baseada em conteúdo fazem recomendações fundamentadas nos conteúdos descritivos (nome, localização, descrição etc) dos items juntamente com as avaliações e comportamento dos usuários, tentando assim, encontrar itens similares em seu catálogo.</p>
+
+<p>Podemos citar aqui, a famosa <a href="https://en.wikipedia.org/wiki/Sentiment_analysis"><strong><em>análise de sentimentos</em></strong></a>. O usuário, na maioria das vezes, escreve reviews sobre algum item e o sistema pode se basear nessa review para oferecer ou não produtos similares.</p>
+
+<h4 id="filtragem-colaborativa">Filtragem colaborativa</h4>
+
+<p>Esse tipo de algoritmo recomenda itens similares aos quais o usuário curtiu anteriormente. Aqui o item é considerado como um caixa preta, ou seja, o conteúdo descritivo dele não é importante.</p>
+
+<p>A idéia central é calcular o quanto um produto, que o usuário gostou, é similar a outro do catálogo e recomendar somente itens que agradarão ao usuário.</p>
+
+<h4 id="híbridos">Híbridos</h4>
+
+<p>Nos dias atuais esse é o tipo de sistema de recomendação mais utilizado. Ele normalmente combina os SR baseado em contéudo e o de filtragem colaborativa.</p>
+
+<p>Realizar essa mistura de técnicas permite que a acurácia das recomendações sejam muito melhores!</p>
+
+<p>Esses sistemas tornaram-se parte integral de várias plataformas, como o Netflix, para ajudar seus usuários a consumir conteúdo mais acertivo.</p>
+
+<h4 id="curiosidade">Curiosidade</h4>
+
+<p>O Netflix, em 2009, promoveu uma competição que tinha como objetivo premiar, com 1 milhão de dólares, quem desenvolvesse um <em>algoritmo de filtragem colaborativa</em> que fizesse recomendações sem utilizar qualquer informação sobre o usuário ou filme.</p>
+
+<p>O objetivo era se basear somente nas avaliações que os filmes e séries recebiam. Para entender um pouco mais: <a href="https://en.wikipedia.org/wiki/Netflix_Prize">Netflix Prize</a>.</p>
+
+<h2 id="pyspark">PySpark</h2>
+
+<p>Para criarmos um pequeno Sistema de Recomendação vamos entender primeiro o que é o PySpark!</p>
+
+<p><br />
+<span style="display:block;text-align:center">
+   <img src="/img/pyspark_logo.jpeg " alt="" width="500" height="250" />
+</span></p>
+
+<h3 id="o-que-é-pyspark">O que é Pyspark?</h3>
+
+<p>PySpark é uma interface que serve de comunicação com o Spark, e foi desenvolvida utilizando Python.</p>
+
+<p><strong><em>Em linhas gerais</em></strong>: você pode interagir com o Spark usando Python.</p>
+
+<p>Mas afinal o que é Spark?</p>
+
+<h4 id="spark">Spark</h4>
+
+<p><a href="https://spark.apache.org/">Spark</a> nada mais é do que um framework que possibilita processar grandes quantidade de dados, e é hoje em dia, a ferramenta mais utilizada em Big Data.</p>
+
+<p>Foi criado pela Universidade da Califórnia, mas atualmente, faz parte do catálago de produtos da Fundação Apache. É open-source e você pode contribuir com o projeto que está disponível no <a href="https://github.com/apache/spark">github</a>.</p>
+
+<p>Todo o core do Spark é escrito em Scala e executado em um JVM (<em>Java Virtual Machine</em>). Podemos escrever aplicações Spark em R, Python, Java e Scala.</p>
+
+<p>Lembram do PySpark? É ele que permite que exista essa comunicação com o core do Spark, caso contrário, teríamos de obrigatoriamente saber Scala para criar aplicações Spark.</p>
+
+<h4 id="biblioteca-de-machine-learning">Biblioteca de Machine Learning</h4>
+
+<p>Obviamente o Spark possui uma bliblioteca muito poderosa para trabalharmos com ML (Machine Learning), a <a href="https://spark.apache.org/mllib/">Spark MLlib</a>.</p>
+
+<p>Com essa biblioteca podemos criar modelos de Machine Learning de uma maneira distribuída, e possui a maioria de algoritmos para classificação, regressão, clusterização, sistemas de recomendação e NLP (Natural Language Processing).</p>
+
+<p>O céu é o limite!</p>
+
+<h2 id="parte-prática-recomendando-filmes">Parte prática: recomendando filmes</h2>
+
+<p>Vamos deixar de lado um pouco a teoria e passar à parte prática!</p>
+
+<p>Para mostrar o uso de PySpark e ML para construir um simples Sistemas de Recomendação usaremos um case amplamente disseminado por livros e tutoriais: recomendação de filmes.</p>
+
+<p>É algo que todos gostamos, e que possui grandes datasets disponíveis no <a href="https://grouplens.org/datasets/movielens/">MovieLens</a>.</p>
+
+<p>Quer ver o PySpark em ação? Então diverta-se com um Jupyter Notebook que mostra o funcionamento de um sistema de recomendação, e que se encontra <a href="https://github.com/pattyvader/recommender_system_notebook/blob/main/movies_ratings.ipynb">aqui</a>!</p>
+
+<h2 id="links-interessantes">Links interessantes</h2>
+
+<p><a href="https://www.manning.com/books/practical-recommender-systems">Practical Recommender Systems</a></p>
+
+<p><a href="https://www.apress.com/gp/book/9781484241301">Machine Learning with PySpark</a></p>
+
+<p><a href="https://www.apress.com/gp/book/9781484235638">Pro Machine Learning Algorithms</a></p>
+
+<p><a href="https://www.manning.com/books/collective-intelligence-in-action">Collective Intelligence in Action</a></p>
+
+<p><a href="https://spark.apache.org/docs/latest/api/python/index.html">PySpark Documentation</a></p>
+
+<p><a href="https://www.springer.com/gp/book/9783319296579">Recommender Systems: The textbook</a></p>
+
+
+      
+        <img class="img_footer" src="/img/recommender_systems_thumbnail.jpg">
+        </br></br>
+      
+
+      
+        
+
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/2021/04/16/pyspark-e-sistemas-recomendacao.html';
+      this.page.identifier = 'http://localhost:4000/2021/04/16/pyspark-e-sistemas-recomendacao.html';
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://revolucaofeminina.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+      
+
+      <hr>
+
+      <div class="clearfix">
+
+        
+        <a class="btn btn-primary float-left" href="/2020/10/22/engenharia-dados-programacao.html" data-toggle="tooltip" data-placement="top" title="Preciso saber programar?">&larr; Previous<span class="d-none d-md-inline"> Post</span></a>
+        
+        
+        <a class="btn btn-primary float-right" href="/2025/03/08/mulheres-em-tech.html" data-toggle="tooltip" data-placement="top" title="Codificando a mudança: desafios e triunfos de mulheres na indústria de TI">Next<span class="d-none d-md-inline"> Post</span> &rarr;</a>
+        
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+    <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="https://www.twitter.com/pattyvader">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/pattyvader">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; Patty Vader 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/clean-blog.min.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  </body>
+
+</html>

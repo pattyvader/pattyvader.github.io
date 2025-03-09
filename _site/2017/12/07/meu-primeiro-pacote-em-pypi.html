@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Meu primeiro pacote no PyPI - Revolução Feminina
+    
+  </title>
+
+  <meta name="description" content="Está rolando uma semana bem legal no Olist. O Bootcamp. Estão ocorrendo inúmeras atividades de pr...">
+  <meta property="og:description" content="Está rolando uma semana bem legal no Olist. O Bootcamp. Estão ocorrendo inúmeras atividades de programação,
+entre elas o primeiro Hackthon do Olist. Pela pri...">
+  
+  <meta property="og:image" content="http://localhost:4000/img/logo-pypi.jpg">
+  
+  <meta property="og:image:width" content="800"> 
+  <meta property="og:image:height" content="600">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Meu primeiro pacote no PyPI">
+  <meta name="twitter:site" content="@pattyvader" />
+  
+  <meta name="twitter:description" content="Está rolando uma semana bem legal no Olist. O Bootcamp. Estão ocorrendo inúmeras atividades de programação,
+entre elas o primeiro Hackthon do Olist. Pela pri...">
+  
+  
+  <meta name="twitter:image" content="http://localhost:4000/img/logo-pypi.jpg">
+  
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="/assets/vendor/font-awesome/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="http://localhost:4000/2017/12/07/meu-primeiro-pacote-em-pypi.html">
+  <link rel="alternate" type="application/rss+xml" title="Revolução Feminina" href="/feed.xml">
+
+</head>
+
+
+  <body>
+
+    <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">Revolução Feminina</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/sobre">Sobre</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+    <!-- Page Header -->
+
+<header class="masthead" style="background-image: url('/img/logo-pypi.jpg')">
+
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="post-heading">
+          <h1>Meu primeiro pacote no PyPI</h1>
+          
+          <h2 class="subheading"></h2>
+          
+          <span class="meta">Posted by
+            <a href="#">Patty Vader</a>
+            on December 07, 2017</span>
+            <span class="meta" style="font-size:15px">
+
+  
+    3
+  
+     minutes to read
+  
+</span>
+            
+            
+            
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      
+
+<style>
+#share-buttons {display: inline-block; vertical-align: middle; }
+#share-buttons:after {content: ""; display: block; clear: both;}
+#share-buttons > div {
+    position: relative;
+    text-align: left; 
+    height: 36px; 
+    width: 32px; 
+    float: left; 
+    text-align: center;
+}
+#share-buttons > div > svg {height: 16px; fill: #d5d5d5; margin-top: 10px;}
+#share-buttons > div:hover {cursor: pointer;}
+#share-buttons > div.facebook:hover > svg {fill: #3B5998;}
+#share-buttons > div.twitter:hover > svg {fill: #55ACEE;}
+#share-buttons > div.linkedin:hover > svg {fill: #0077b5;}
+#share-buttons > div.mail:hover > svg {fill: #7D7D7D;}
+#share-buttons > div.facebook > svg {height: 18px; margin-top: 9px;}
+#share-buttons > div.twitter > svg {height: 20px; margin-top: 8px;}
+#share-buttons > div.linkedin > svg {height: 19px; margin-top: 7px;}
+#share-buttons > div.mail > svg {height: 14px; margin-top: 11px;}
+</style>
+
+<span style="color: silver;">Share on: </span><div id="share-buttons">
+    <div class="facebook" title="Share this on Facebook" onclick="window.open('http://www.facebook.com/share.php?u=http://localhost:4000/2017/12/07/meu-primeiro-pacote-em-pypi.html');"><svg viewbox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"></path></svg></div>
+    <div class="twitter" title="Share this on Twitter" onclick="window.open('http://twitter.com/share?status=http://localhost:4000/2017/12/07/meu-primeiro-pacote-em-pypi.html');"><svg viewbox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"></path></svg></div>
+    <div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&amp;url=http://localhost:4000/2017/12/07/meu-primeiro-pacote-em-pypi.html&amp;title=&amp;summary=&amp;source=');"><svg viewbox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"></path></svg></div>
+</div>
+  
+      <p>Está rolando uma semana bem legal no Olist. O Bootcamp. Estão ocorrendo inúmeras atividades de programação,
+entre elas o primeiro Hackthon do Olist. Pela primeira vez todos os devs estão reunidos fisicamente
+em Curitiba, no office novinho.</p>
+
+<p>Ou melhor, quase todos. <img class="emoji" title=":cry:" alt=":cry:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png" height="20" width="20"></p>
+
+<p>Estão participando remotamente eu que estou em Barcelona, e outro dev que está em Portugal.</p>
+
+<p>Mas tudo bem. Como a galera é muito criativa por lá, conseguimos participar de tudo!!!  <img class="emoji" title=":dancer:" alt=":dancer:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f483.png" height="20" width="20"></p>
+
+<p>E para ajudar minha equipe fiquei responsável por publicar o package do nosso projeto no PyPI. Foi a primeira vez que submeti um pacote. Nesse post mostrei como realizar essa tarefa.  <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20"></p>
+
+<h2 id="mas-o-que-é-pypi">Mas o que é PyPI?</h2>
+
+<p>É um repositório de software open-source oficial do Python. Todo mundo pode enviar seus pacotes para lá.
+E depois pode instalar na sua máquina os pacotes usando <code class="language-plaintext highlighter-rouge">pip</code> ou <code class="language-plaintext highlighter-rouge">easy_install</code>. Talvez você já tenha feito isso e nem sabia.  <img class="emoji" title=":hushed:" alt=":hushed:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f62f.png" height="20" width="20"></p>
+
+<h2 id="como-publicar-um-package">Como publicar um <em>package</em>?</h2>
+
+<p>Antes de tudo: seu projeto deve estar em repositório público, pois conforme será mostrado nos passos seguintes o
+PyPI precisará ter acesso ao projeto.</p>
+
+<p>A PyPA(Python Packaging Authority) possui um <a href="https://github.com/pypa/sampleproject">repositório</a> no GitHub onde você poderá verificar toda a estrutura de um projeto.</p>
+
+<h5 id="1-crie-suas-contas-no-pypi">1. Crie suas contas no PyPI</h5>
+
+<p>Primeiro criei as contas no PyPI. Existem 2 tipos - <a href="https://pypi.python.org/pypi?%3Aaction=register_form">PyPI</a> e
+<a href="https://testpypi.python.org/pypi?%3Aaction=register_form">PyPI test</a>.
+Segui como base o artigo do <a href="http://peterdowns.com/posts/first-time-with-pypi.html">Peter Downs</a>.
+E ele aconselha a criar as contas com os mesmos <strong>user</strong> e <strong>password</strong>. Facilita na hora de lembrar do login.</p>
+
+<h5 id="2-escreva-o-arquivo-pypirc">2. Escreva o arquivo <code class="language-plaintext highlighter-rouge">.pypirc</code>
+</h5>
+
+<p>O <code class="language-plaintext highlighter-rouge">.pypirc</code> é o arquivo de configuração para fazer a autenticação no PyPI e contém os
+links para fazer o upload do pacote. Ele deve ficar assim:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[distutils]
+index-servers =
+  pypi
+  pypitest
+
+[pypi]
+repository: https://upload.pypi.org/legacy/
+username=your_username
+password=your_password
+
+[pypitest]
+repository: https://test.pypi.org/legacy/
+username=your_username
+password=your_password
+
+</code></pre></div></div>
+
+<blockquote>
+  <p>Os links <code class="language-plaintext highlighter-rouge">https://pypi.python.org/pypi</code> e <code class="language-plaintext highlighter-rouge">https://testpypi.python.org/pypi</code> não estão mais ativos.</p>
+</blockquote>
+
+<p>Devido a migração para o novo domínio <a href="https://packaging.python.org/glossary/#term-pypi-org">PyPI.org</a> deve-se usar o <code class="language-plaintext highlighter-rouge">pypi.org/legacy</code></p>
+
+<p>Mais explicações <a href="https://packaging.python.org/guides/migrating-to-pypi-org/">aqui</a></p>
+
+<h5 id="3-prepare-o-arquivo-de-setup">3. Prepare o arquivo de setup</h5>
+
+<p>Cada projeto no PyPI precisa de um arquivo <code class="language-plaintext highlighter-rouge">setup.py</code>, no diretório root. Ele contêm alguns dados sobre o seu projeto.
+Ele deve ficar mais ou menos assim:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from distutils.core import setup
+setup(
+  name='sample',
+  packages = ['mypackage'], # this must be the same as the name above
+  version='1.2.0',
+  description='A sample Python project',
+  author='The Python Packaging Authority',
+  author_email='pypa-dev@googlegroups.com',
+  license='MIT',
+  url='https://github.com/pypa/sampleproject', # The project's main homepage.
+  keywords = ['testing', 'logging', 'example'], # arbitrary keywords
+  classifiers = [],
+)
+</code></pre></div></div>
+
+<p><a href="https://github.com/pypa/sampleproject/blob/master/setup.py">Exemplo de um arquivo de setup</a></p>
+
+<h5 id="4-faça-o-upload">4. Faça o upload</h5>
+
+<ul>
+  <li>
+    <p><strong>PyPI test</strong></p>
+
+    <p>Para testar o upload e verificar se tudo está correto deve-se digitar:</p>
+
+    <p><code class="language-plaintext highlighter-rouge">python setup.py register -r pypitest</code></p>
+
+    <p>Esse comando faz o registro do pacote no PyPI test.</p>
+
+    <p>Se tudo correu bem digite:</p>
+
+    <p><code class="language-plaintext highlighter-rouge">python setup.py sdist upload -r pypitest</code></p>
+
+    <p>Pronto! Se não apareceram erros pode-se ir para o próximo passo.</p>
+  </li>
+  <li>
+    <p><strong>PyPI</strong></p>
+
+    <p>Agora é a hora!  <img class="emoji" title=":alarm_clock:" alt=":alarm_clock:" src="https://github.githubassets.com/images/icons/emoji/unicode/23f0.png" height="20" width="20"></p>
+
+    <p>Para enviar o seu pacote para o PyPI somente digite:</p>
+
+    <p><code class="language-plaintext highlighter-rouge">python setup.py register -r pypi</code></p>
+
+    <p>E por fim:</p>
+
+    <p><code class="language-plaintext highlighter-rouge">python setup.py sdist upload -r pypi</code></p>
+  </li>
+</ul>
+
+<p>Seu pacote já se encontra nos servidores do PyPI!</p>
+
+<p><em>Simples assim!!!!</em></p>
+
+<hr>
+
+<p><a href="https://pypi.python.org/pypi">Para saber mais</a></p>
+
+<p><a href="https://pypi.python.org/pypi/tapioca-statuspage">Olisters developers</a></p>
+
+<hr>
+
+
+      
+
+      
+        
+
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/2017/12/07/meu-primeiro-pacote-em-pypi.html';
+      this.page.identifier = 'http://localhost:4000/2017/12/07/meu-primeiro-pacote-em-pypi.html';
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://revolucaofeminina.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+
+      
+
+      <hr>
+
+      <div class="clearfix">
+
+        
+        <a class="btn btn-primary float-left" href="/2017/12/04/como-e-ser-desenvolvedora-no-olist.html" data-toggle="tooltip" data-placement="top" title="Como é ser desenvolvedora no Olist?">← Previous<span class="d-none d-md-inline"> Post</span></a>
+        
+        
+        <a class="btn btn-primary float-right" href="/2019/04/20/apis-restful-em-golang.html" data-toggle="tooltip" data-placement="top" title="APIs RESTful em Go">Next<span class="d-none d-md-inline"> Post</span> →</a>
+        
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+    <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="https://www.twitter.com/pattyvader">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/pattyvader">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright © Patty Vader 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/clean-blog.min.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  </body>
+
+</html>

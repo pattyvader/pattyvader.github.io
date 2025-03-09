@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    APIs RESTful em Go - Revolução Feminina
+    
+  </title>
+
+  <meta name="description" content="Minha aventura pelo mundo Go resultou nessa primeira implementação de API. Resumindo: é algo desp...">
+  <meta property="og:description" content="Minha aventura pelo mundo Go resultou nessa primeira implementação de API. Resumindo: é algo despretencioso e totalmente iniciante!
+
+Esse post descreve em li...">
+  
+  <meta property="og:image" content="http://localhost:4000/img/gopher.jpg">
+  
+  <meta property="og:image:width" content="800"> 
+  <meta property="og:image:height" content="600">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="APIs RESTful em Go">
+  <meta name="twitter:site" content="@pattyvader" />
+  
+  <meta name="twitter:description" content="Minha aventura pelo mundo Go resultou nessa primeira implementação de API. Resumindo: é algo despretencioso e totalmente iniciante!
+
+Esse post descreve em li...">
+  
+  
+  <meta name="twitter:image" content="http://localhost:4000/img/gopher.jpg">
+  
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="/assets/vendor/font-awesome/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="http://localhost:4000/2019/04/20/apis-restful-em-golang.html">
+  <link rel="alternate" type="application/rss+xml" title="Revolução Feminina" href="/feed.xml">
+
+</head>
+
+
+  <body>
+
+    <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">Revolução Feminina</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/sobre">Sobre</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+    <!-- Page Header -->
+
+<header class="masthead" style="background-image: url('/img/gopher.jpg')">
+
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="post-heading">
+          <h1>APIs RESTful em Go</h1>
+          
+          <h2 class="subheading">Minha primeira API Go</h2>
+          
+          <span class="meta">Posted by
+            <a href="#">Patty Vader</a>
+            on April 20, 2019</span>
+            <span class="meta" style="font-size:15px">
+
+  
+    10
+  
+     minutes to read
+  
+</span>
+            
+            
+            
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      
+
+<style>
+#share-buttons {display: inline-block; vertical-align: middle; }
+#share-buttons:after {content: ""; display: block; clear: both;}
+#share-buttons > div {
+    position: relative;
+    text-align: left; 
+    height: 36px; 
+    width: 32px; 
+    float: left; 
+    text-align: center;
+}
+#share-buttons > div > svg {height: 16px; fill: #d5d5d5; margin-top: 10px;}
+#share-buttons > div:hover {cursor: pointer;}
+#share-buttons > div.facebook:hover > svg {fill: #3B5998;}
+#share-buttons > div.twitter:hover > svg {fill: #55ACEE;}
+#share-buttons > div.linkedin:hover > svg {fill: #0077b5;}
+#share-buttons > div.mail:hover > svg {fill: #7D7D7D;}
+#share-buttons > div.facebook > svg {height: 18px; margin-top: 9px;}
+#share-buttons > div.twitter > svg {height: 20px; margin-top: 8px;}
+#share-buttons > div.linkedin > svg {height: 19px; margin-top: 7px;}
+#share-buttons > div.mail > svg {height: 14px; margin-top: 11px;}
+</style>
+
+<span style="color: silver;">Share on: </span><div id="share-buttons">
+    <div class="facebook" title="Share this on Facebook" onclick="window.open('http://www.facebook.com/share.php?u=http://localhost:4000/2019/04/20/apis-restful-em-golang.html');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"/></svg></div>
+    <div class="twitter" title="Share this on Twitter" onclick="window.open('http://twitter.com/share?status=http://localhost:4000/2019/04/20/apis-restful-em-golang.html');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg></div>
+    <div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/2019/04/20/apis-restful-em-golang.html&title=&summary=&source=');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg></div>
+</div>
+  
+      <p>Minha aventura pelo mundo Go resultou nessa primeira implementação de API. <em>Resumindo</em>: é algo despretencioso e totalmente iniciante!</p>
+
+<p>Esse post descreve em linhas gerais um pouco sobre Go e APIs RESTful, e logo após é explicado sobre o que foi codificado. O código da API está disponível <a href="https://github.com/pattyvader/users_service">aqui</a>.</p>
+
+<h2 id="a-linguagem-go">A linguagem Go</h2>
+
+<p>O Go é uma linguagem de programação relativamente nova, e foi desenvolvida por Engenheiros do Google, em 2007. Já em 2009, o Go tornou-se Open Source, permitindo a todos contribuir na melhoria e evolução da linguagem. <a href="https://github.com/golang/go">Contribua!</a></p>
+
+<p>Para facilitar o aprendizado e um melhor entendimento do básico da linguagem, foi desenvolvido o <a href="https://go-tour-br.appspot.com/list">Go tour</a>. Ele é um ambiente online e interativo, onde se pode dar os primeiros passos com Go.</p>
+
+<h5 id="principais-características">Principais características</h5>
+
+<ol>
+  <li>Possui uma sintaxe bem simples.</li>
+  <li>É uma linguagem compilada.</li>
+  <li>A curva de aprendizado é baixa.</li>
+</ol>
+
+<h2 id="apis-restful">APIs RESTful</h2>
+
+<p>O termo REST (<em>Representational State Transfer</em>) foi criado por Roy Fielding, em 2000. É um estilo de arquitetura para ajudar na criação e organização de sistemas distribuídos. Podemos usar esse padrão arquitetural para criar uma API (<em>Application Programming Interface</em>).</p>
+
+<p>Podemos definir API com um sistema onde a interação cliente/servidor é realizada através do protocolo HTTP. Nessa interação o cliente realiza requisições para o servidor solicitando dados de determinado recurso. Normalmente a resposta com esses dados estão no formato <code class="language-plaintext highlighter-rouge">.JSON</code>.</p>
+
+<pre><code class="language-json">[
+    {
+        "ID": 1,
+        "Name": "Patty",
+        "Email": "pattyvaderbr@gmail.com",
+        "Password": "123456",
+        "Admin": true
+    },
+]
+</code></pre>
+
+<p><strong>Resumindo</strong>: <em>API RESTful</em> é uma plataforma que expõe dados como recursos, permitindo assim, interagir com eles.</p>
+
+<h5 id="1-recurso-coleção-e-representação">1. Recurso, Coleção e Representação</h5>
+
+<h6 id="11-recurso">1.1 Recurso</h6>
+
+<p>Recurso é a representação de algo, ou um objeto, que pode ser manipulado. Pode-se dizer que <code class="language-plaintext highlighter-rouge">user</code> é um recurso.</p>
+
+<h6 id="12-coleção">1.2 Coleção</h6>
+
+<p>Coleção é um conjunto de recursos, como por exemplo, <code class="language-plaintext highlighter-rouge">/users</code>.</p>
+
+<h6 id="13-representação">1.3 Representação</h6>
+
+<p>É a maneira pela qual um recurso pode ser representado. Essa representação pode ser feita em JSON, XML ou HTML.</p>
+
+<pre><code class="language-json">[
+    {
+        "ID": 1,
+        "Name": "Patty",
+        "Email": "pattyvaderbr@gmail.com",
+        "Password": "123456",
+        "Admin": true
+    },
+]
+</code></pre>
+
+<h5 id="2-http-verbs">2. HTTP Verbs</h5>
+
+<ul>
+  <li><strong>GET</strong> : obtém a representação de um recurso.</li>
+  <li><strong>HEAD</strong>: obtém os headers.</li>
+  <li><strong>POST</strong>: cria um novo recurso baseado na sua representação.</li>
+  <li><strong>PUT</strong> : muda o estado do recurso ou cria um novo se você conhece a sua URL.</li>
+  <li><strong>DELETE</strong>: remove um recurso.</li>
+  <li><strong>PATCH</strong>: modifica parte do estado de um recurso.</li>
+</ul>
+
+<h5 id="3-status-code">3. Status code</h5>
+
+<ul>
+  <li><strong>1xx - Informativo</strong>: solicitação recebida e dando continuidade ao processo.</li>
+  <li><strong>2xx - Sucesso</strong>: a solicitação foi recebida, entendida e aceita pelo servidor.</li>
+  <li><strong>3xx - Redirecionamento</strong>: o cliente deve executar uma ação adicional para completar a sua requisição.</li>
+  <li><strong>4xx - Erro no cliente</strong>: a solicitação enviada pelo cliente possui erros.</li>
+  <li><strong>5xx - Erro no servidor</strong>: erros ocorridos no servidor.</li>
+</ul>
+
+<h2 id="um-pouco-de-código">Um pouco de código</h2>
+
+<h5 id="tecnologias-utilizadas">Tecnologias utilizadas</h5>
+
+<ul>
+  <li><a href="https://github.com/gorilla/mux">Gorilla</a> - implementa rotas URL</li>
+  <li><a href="https://www.postgresql.org/">PostreSQL</a></li>
+  <li><a href="https://github.com/BurntSushi/toml">TOML</a> - lê arquivos do tipo TOML</li>
+</ul>
+
+<h6 id="arquivos-do-tipo-toml">Arquivos do tipo TOML</h6>
+
+<p>É um formato de arquivo de configuração mais fácil de ler e escrever, criado por Tom Preston-Werner que é o co-fundador do GitHub. Consiste em pares de chave/valor, nomes de seções e comentários. Abaixo segue um exemplo desse tipo de arquivo.</p>
+
+<div class="language-toml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#dados para conexão no banco de dados</span>
+<span class="nn">[database]</span>
+<span class="py">server</span> <span class="p">=</span> <span class="s">"192.168.1.1"</span>
+<span class="py">ports</span> <span class="p">=</span> <span class="p">[</span> <span class="mi">8001</span><span class="p">,</span> <span class="mi">8001</span><span class="p">,</span> <span class="mi">8002</span> <span class="p">]</span>
+<span class="py">connection_max</span> <span class="p">=</span> <span class="mi">5000</span>
+<span class="py">enabled</span> <span class="p">=</span> <span class="kc">true</span><span class="err"></span>
+</code></pre></div></div>
+
+<p>Trata-se de um acrônimo para “Tom’s Obvious, Minimal Language”.</p>
+
+<h5 id="implementação">Implementação</h5>
+
+<p>O projeto <code class="language-plaintext highlighter-rouge">users_service</code> está estruturado da seguinte maneira:</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">users_service</span><span class="o">/</span>
+     <span class="n">dao</span><span class="o">/</span>
+        <span class="n">connectionDAO</span><span class="o">.</span><span class="k">go</span>
+        <span class="n">userDAO</span><span class="o">.</span><span class="k">go</span>
+     <span class="n">handlers</span><span class="o">/</span>
+        <span class="n">userHandler</span><span class="o">.</span><span class="k">go</span>
+     <span class="n">models</span><span class="o">/</span>
+        <span class="n">user</span><span class="o">.</span><span class="k">go</span>
+     <span class="o">.</span><span class="n">gitignore</span>
+     <span class="o">.</span><span class="n">travis</span><span class="o">.</span><span class="n">yml</span>
+     <span class="n">LICENSE</span>
+     <span class="n">README</span><span class="o">.</span><span class="n">md</span>
+     <span class="n">config</span><span class="o">.</span><span class="n">toml</span>
+     <span class="n">database</span><span class="o">.</span><span class="n">sql</span>
+     <span class="n">main</span><span class="o">.</span><span class="k">go</span>
+</code></pre></div></div>
+<h5 id="1-especificação-da-api">1. Especificação da API</h5>
+
+<p>A API possui as seguintes URLs:</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">GET</code></strong> <code class="language-plaintext highlighter-rouge">lista todos os usuários</code></p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">users</span><span class="o">/</span>
+</code></pre></div></div>
+
+<p><strong><code class="language-plaintext highlighter-rouge">GET</code></strong> <code class="language-plaintext highlighter-rouge">lista somente 1 usuário</code></p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="p">{</span><span class="n">id</span><span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong><code class="language-plaintext highlighter-rouge">POST</code></strong> <code class="language-plaintext highlighter-rouge">cadastra um novo usuário</code></p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">users</span><span class="o">/</span>
+</code></pre></div></div>
+
+<p><strong><code class="language-plaintext highlighter-rouge">PUT</code></strong> <code class="language-plaintext highlighter-rouge">atualiza somente 1 usuário</code></p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="p">{</span><span class="n">id</span><span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong><code class="language-plaintext highlighter-rouge">DELETE</code></strong> <code class="language-plaintext highlighter-rouge">remove somente 1 usuário</code></p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="p">{</span><span class="n">id</span><span class="p">}</span>
+</code></pre></div></div>
+
+<h5 id="2-dao">2. DAO</h5>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> DAO: Data Access Object (Objeto de acesso a dados)
+ Consiste em separar as regras de negócio do acesso à base de dados.
+</code></pre></div></div>
+
+<p>O diretório <code class="language-plaintext highlighter-rouge">dao</code> possui os arquivos <code class="language-plaintext highlighter-rouge">connectionDAO.go</code> e <code class="language-plaintext highlighter-rouge">userDAO.go</code></p>
+
+<h6 id="21-connectiondaogo">2.1 <strong>connectionDAO.go</strong></h6>
+
+<p>Esse arquivo possui 2 funções:</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">func</span> <span class="n">InitDB</span><span class="p">()</span> <span class="p">{</span>
+   <span class="k">var</span> <span class="n">conf</span> <span class="n">configFile</span>
+   <span class="k">var</span> <span class="n">err</span> <span class="kt">error</span>
+
+   <span class="k">if</span> <span class="n">_</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">toml</span><span class="o">.</span><span class="n">DecodeFile</span><span class="p">(</span><span class="s">"config.toml"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">conf</span><span class="p">);</span> <span class="n">err</span> <span class="o">!=</span> <span class="no">nil</span> <span class="p">{</span>
+     <span class="n">log</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+     <span class="k">return</span>
+   <span class="p">}</span>
+
+   <span class="n">dbInfo</span> <span class="o">:=</span> <span class="n">fmt</span><span class="o">.</span><span class="n">Sprintf</span><span class="p">(</span><span class="s">"host=%s port=%d user=%s password=%s dbname=%s sslmode=%s"</span><span class="p">,</span>
+     <span class="n">conf</span><span class="o">.</span><span class="n">DB</span><span class="o">.</span><span class="n">Host</span><span class="p">,</span> <span class="n">conf</span><span class="o">.</span><span class="n">DB</span><span class="o">.</span><span class="n">Port</span><span class="p">,</span> <span class="n">conf</span><span class="o">.</span><span class="n">DB</span><span class="o">.</span><span class="n">User</span><span class="p">,</span> <span class="n">conf</span><span class="o">.</span><span class="n">DB</span><span class="o">.</span><span class="n">Password</span><span class="p">,</span> <span class="n">conf</span><span class="o">.</span><span class="n">DB</span><span class="o">.</span><span class="n">Name</span><span class="p">,</span> <span class="n">conf</span><span class="o">.</span><span class="n">DB</span><span class="o">.</span><span class="n">SSLmode</span><span class="p">)</span>
+   <span class="n">db</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">sql</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="s">"postgres"</span><span class="p">,</span> <span class="n">dbInfo</span><span class="p">)</span>
+   <span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="no">nil</span> <span class="p">{</span>
+     <span class="nb">panic</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+   <span class="p">}</span>
+
+   <span class="n">err</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Ping</span><span class="p">()</span>
+   <span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="no">nil</span> <span class="p">{</span>
+     <span class="nb">panic</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+   <span class="p">}</span>
+   <span class="n">log</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"host: %s, port: %d, user: %s, name: %s"</span><span class="p">,</span>
+     <span class="n">conf</span><span class="o">.</span><span class="n">DB</span><span class="o">.</span><span class="n">Host</span><span class="p">,</span> <span class="n">conf</span><span class="o">.</span><span class="n">DB</span><span class="o">.</span><span class="n">Port</span><span class="p">,</span> <span class="n">conf</span><span class="o">.</span><span class="n">DB</span><span class="o">.</span><span class="n">User</span><span class="p">,</span> <span class="n">conf</span><span class="o">.</span><span class="n">DB</span><span class="o">.</span><span class="n">Name</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">func</span> <span class="n">CloseDB</span><span class="p">()</span> <span class="p">{</span>
+   <span class="n">db</span><span class="o">.</span><span class="n">Close</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>A primeira é responsável por ler o arquivo do tipo TOML e efetuar a conexão com o banco de dados. E a segunda fecha essa conexão.</p>
+
+<h6 id="22-userdaogo">2.2 <strong>userDAO.go</strong></h6>
+
+<p>Nesse arquivo constam as funções responsáveis por lidar diretamente com o banco de dados. São elas:</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">func</span> <span class="n">GetAllUsers</span><span class="p">()</span>
+<span class="k">func</span> <span class="n">GetUserByID</span><span class="p">()</span>
+<span class="k">func</span> <span class="n">CreateUser</span><span class="p">()</span>
+<span class="k">func</span> <span class="n">UpdateUser</span><span class="p">()</span>
+<span class="k">func</span> <span class="n">RemoveUser</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>Para exemplificar a estrutura que possuem essas funções, abaixo é mostrada a <code class="language-plaintext highlighter-rouge">RemoveUser</code> que é responsável por remover um usuário da base de dados.</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">func</span> <span class="n">RemoveUser</span><span class="p">(</span><span class="n">userID</span> <span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">result</span><span class="p">,</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">db</span><span class="o">.</span><span class="n">Exec</span><span class="p">(</span><span class="s">`DELETE FROM users where id = $1`</span><span class="p">,</span> <span class="n">userID</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="no">nil</span> <span class="p">{</span>
+     <span class="k">return</span> <span class="m">0</span><span class="p">,</span> <span class="n">err</span>
+  <span class="p">}</span>
+
+  <span class="n">rowsDeleted</span><span class="p">,</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">result</span><span class="o">.</span><span class="n">RowsAffected</span><span class="p">()</span>
+  <span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="no">nil</span> <span class="p">{</span>
+     <span class="k">return</span> <span class="m">0</span><span class="p">,</span> <span class="n">err</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="kt">int</span><span class="p">(</span><span class="n">rowsDeleted</span><span class="p">),</span> <span class="n">err</span>
+<span class="p">}</span><span class="err"></span>
+</code></pre></div></div>
+
+<h5 id="3-handlers">3. Handlers</h5>
+
+<p>Os handlers são responsáveis por “escutar” as requisições do cliente e retornar uma resposta. No arquivo <code class="language-plaintext highlighter-rouge">userHandler.go</code> encontram-se as seguintes funções:</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">func</span> <span class="n">GetAllUsersHandler</span><span class="p">()</span>
+<span class="k">func</span> <span class="n">GetUserByIDHandler</span><span class="p">()</span>
+<span class="k">func</span> <span class="n">CreateUserHandler</span><span class="p">()</span>
+<span class="k">func</span> <span class="n">UpdateUserHandler</span><span class="p">()</span>
+<span class="k">func</span> <span class="n">DeleteUserHandler</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>A função <code class="language-plaintext highlighter-rouge">GetAllUsersHandler</code>, por exemplo, é responsável por retornar todos os usuários da base de dados. Retorna o erro <strong>500</strong>, caso a requisição não seja bem sucedida.</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">func</span> <span class="n">GetAllUsersHandler</span><span class="p">(</span><span class="n">w</span> <span class="n">http</span><span class="o">.</span><span class="n">ResponseWriter</span><span class="p">,</span> <span class="n">r</span> <span class="o">*</span><span class="n">http</span><span class="o">.</span><span class="n">Request</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">users</span><span class="p">,</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">dao</span><span class="o">.</span><span class="n">GetAllUsers</span><span class="p">()</span>
+  <span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="no">nil</span> <span class="p">{</span>
+    <span class="n">http</span><span class="o">.</span><span class="n">Error</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="s">"Internal error"</span><span class="p">,</span> <span class="n">http</span><span class="o">.</span><span class="n">StatusInternalServerError</span><span class="p">)</span>
+    <span class="k">return</span>
+  <span class="p">}</span>
+  <span class="n">FormatResponseToJSON</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">http</span><span class="o">.</span><span class="n">StatusOK</span><span class="p">,</span> <span class="n">users</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Foi adicionado a esse arquivo uma função que formata a resposta para o cliente em formato JSON.</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">func</span> <span class="n">FormatResponseToJSON</span><span class="p">(</span><span class="n">w</span> <span class="n">http</span><span class="o">.</span><span class="n">ResponseWriter</span><span class="p">,</span> <span class="n">statusCode</span> <span class="kt">int</span><span class="p">,</span> <span class="n">response</span> <span class="k">interface</span><span class="p">{})</span> <span class="p">{</span>
+  <span class="n">json</span><span class="p">,</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">json</span><span class="o">.</span><span class="n">Marshal</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="no">nil</span> <span class="p">{</span>
+    <span class="n">http</span><span class="o">.</span><span class="n">Error</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">err</span><span class="o">.</span><span class="n">Error</span><span class="p">(),</span> <span class="n">http</span><span class="o">.</span><span class="n">StatusInternalServerError</span><span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="n">w</span><span class="o">.</span><span class="n">Header</span><span class="p">()</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="s">"Content-Type"</span><span class="p">,</span> <span class="s">"application/json"</span><span class="p">)</span>
+  <span class="n">w</span><span class="o">.</span><span class="n">WriteHeader</span><span class="p">(</span><span class="n">statusCode</span><span class="p">)</span>
+  <span class="n">w</span><span class="o">.</span><span class="n">Write</span><span class="p">(</span><span class="n">json</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h5 id="4-models">4. Models</h5>
+
+<p>O modelo é uma struct do tipo <code class="language-plaintext highlighter-rouge">User</code>. É bem simples e representa os dados de usuário que serão necessários para cadastrá-lo no banco de dados. Essa struct está declarada em <code class="language-plaintext highlighter-rouge">user.go</code>.</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">type</span> <span class="n">User</span> <span class="k">struct</span> <span class="p">{</span>
+  <span class="n">ID</span>       <span class="kt">int</span>
+  <span class="n">Name</span>     <span class="kt">string</span>
+  <span class="n">Email</span>    <span class="kt">string</span>
+  <span class="n">Password</span> <span class="kt">string</span>
+  <span class="n">Admin</span>    <span class="kt">bool</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h5 id="5-config">5. Config</h5>
+
+<p>O arquivo <code class="language-plaintext highlighter-rouge">config.go</code> possui os dados de conexão com o banco de dados. É um arquivo do tipo <code class="language-plaintext highlighter-rouge">TOML</code>.</p>
+
+<div class="language-toml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">[database]</span>
+<span class="py">user</span><span class="p">=</span><span class="s">"users_service"</span>
+<span class="py">host</span><span class="p">=</span><span class="s">"127.0.0.1"</span>
+<span class="py">port</span><span class="p">=</span><span class="mi">5434</span>
+<span class="py">password</span><span class="p">=</span><span class="s">"users_service"</span>
+<span class="py">name</span><span class="p">=</span><span class="s">"users_service"</span>
+<span class="py">sslmode</span><span class="p">=</span><span class="s">"disable"</span>
+</code></pre></div></div>
+
+<h5 id="6-main">6. Main</h5>
+
+<p>O arquivo <code class="language-plaintext highlighter-rouge">main.go</code> é o mais importante do projeto. Nele estão contidas as declarações das URLS que constam na API.</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+   <span class="n">dao</span><span class="o">.</span><span class="n">InitDB</span><span class="p">()</span>
+   <span class="k">defer</span> <span class="n">dao</span><span class="o">.</span><span class="n">CloseDB</span><span class="p">()</span>
+
+   <span class="n">r</span> <span class="o">:=</span> <span class="n">mux</span><span class="o">.</span><span class="n">NewRouter</span><span class="p">()</span>
+   <span class="n">r</span><span class="o">.</span><span class="n">HandleFunc</span><span class="p">(</span><span class="s">"/v1/users/"</span><span class="p">,</span> <span class="n">handlers</span><span class="o">.</span><span class="n">GetAllUsersHandler</span><span class="p">)</span><span class="o">.</span><span class="n">Methods</span><span class="p">(</span><span class="s">"GET"</span><span class="p">)</span>
+   <span class="n">r</span><span class="o">.</span><span class="n">HandleFunc</span><span class="p">(</span><span class="s">"/v1/users/{id}"</span><span class="p">,</span> <span class="n">handlers</span><span class="o">.</span><span class="n">GetUserByIDHandler</span><span class="p">)</span><span class="o">.</span><span class="n">Methods</span><span class="p">(</span><span class="s">"GET"</span><span class="p">)</span>
+   <span class="n">r</span><span class="o">.</span><span class="n">HandleFunc</span><span class="p">(</span><span class="s">"/v1/users/"</span><span class="p">,</span> <span class="n">handlers</span><span class="o">.</span><span class="n">CreateUserHandler</span><span class="p">)</span><span class="o">.</span><span class="n">Methods</span><span class="p">(</span><span class="s">"POST"</span><span class="p">)</span>
+   <span class="n">r</span><span class="o">.</span><span class="n">HandleFunc</span><span class="p">(</span><span class="s">"/v1/users/{id}"</span><span class="p">,</span> <span class="n">handlers</span><span class="o">.</span><span class="n">UpdateUserHandler</span><span class="p">)</span><span class="o">.</span><span class="n">Methods</span><span class="p">(</span><span class="s">"PUT"</span><span class="p">)</span>
+   <span class="n">r</span><span class="o">.</span><span class="n">HandleFunc</span><span class="p">(</span><span class="s">"/v1/users/{id}"</span><span class="p">,</span> <span class="n">handlers</span><span class="o">.</span><span class="n">DeleteUserHandler</span><span class="p">)</span><span class="o">.</span><span class="n">Methods</span><span class="p">(</span><span class="s">"DELETE"</span><span class="p">)</span>
+   <span class="k">if</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">http</span><span class="o">.</span><span class="n">ListenAndServe</span><span class="p">(</span><span class="s">":8001"</span><span class="p">,</span> <span class="n">r</span><span class="p">);</span> <span class="n">err</span> <span class="o">!=</span> <span class="no">nil</span> <span class="p">{</span>
+     <span class="n">log</span><span class="o">.</span><span class="n">Fatal</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="futuras-melhorias">Futuras melhorias</h2>
+
+<ul>
+  <li>
+    <p>Adicionar testes.</p>
+  </li>
+  <li>
+    <p>Permitir a integração de novos banco de dados.</p>
+  </li>
+  <li>
+    <p>Transformar a API em um microserviço.</p>
+  </li>
+  <li>
+    <p>Adicionar autenticação\autorização de usuários.</p>
+  </li>
+</ul>
+
+<h2 id="links-interessantes">Links interessantes</h2>
+
+<p><a href="https://golang.org/doc/faq#history">Um pouco da história do Go</a></p>
+
+<p><a href="https://golang.org/doc/install">Instalando o Go</a></p>
+
+<p><a href="https://go-tour-br.appspot.com/welcome/1">A tour of Go</a></p>
+
+<p><a href="https://golang.org/doc/effective_go.html">Effective Go</a></p>
+
+<p><a href="https://blog.golang.org/">The Go Blog</a></p>
+
+<p><a href="https://talks.golang.org/2012/splash.article">Go at Google: Language Design in the Service of Software Engineering</a></p>
+
+<p><a href="https://github.com/toml-lang/toml">TOML</a></p>
+
+<p><a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">Status code HTTP</a></p>
+
+<p><a href="https://oleb.net/2018/rest/">Roy Fielding’s REST dissertation</a></p>
+
+<p><a href="https://www.manning.com/books/irresistible-apis">Irresistible APIs</a></p>
+
+
+      
+        <img class="img_footer" src="/img/gopherwars.jpg">
+        </br></br>
+      
+
+      
+        
+
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/2019/04/20/apis-restful-em-golang.html';
+      this.page.identifier = 'http://localhost:4000/2019/04/20/apis-restful-em-golang.html';
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://revolucaofeminina.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+      
+
+      <hr>
+
+      <div class="clearfix">
+
+        
+        <a class="btn btn-primary float-left" href="/2017/12/07/meu-primeiro-pacote-em-pypi.html" data-toggle="tooltip" data-placement="top" title="Meu primeiro pacote no PyPI">&larr; Previous<span class="d-none d-md-inline"> Post</span></a>
+        
+        
+        <a class="btn btn-primary float-right" href="/2020/07/14/ciencia-de-dados-introducao.html" data-toggle="tooltip" data-placement="top" title="O que é Ciência de dados?">Next<span class="d-none d-md-inline"> Post</span> &rarr;</a>
+        
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+    <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="https://www.twitter.com/pattyvader">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/pattyvader">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; Patty Vader 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/clean-blog.min.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  </body>
+
+</html>
